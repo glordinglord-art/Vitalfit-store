@@ -183,7 +183,6 @@ export default function ColeccionesPage() {
       {selectedProductForModal && (
         <ProductDetailModal
           product={selectedProductForModal}
-          isOpen={!!selectedProductForModal}
           onClose={() => setSelectedProductForModal(null)}
         />
       )}

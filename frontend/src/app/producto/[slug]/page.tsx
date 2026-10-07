@@ -22,7 +22,7 @@ import {
   Share2
 } from "lucide-react";
 
-export default function ProductDetailPage() {
+function ProductDetailPageContent() {
   const params = useParams();
   const router = useRouter();
   const slug = params?.slug as string;
@@ -53,13 +53,13 @@ export default function ProductDetailPage() {
   };
 
   const handleAddToCart = () => {
-    addItem(product, selectedVariant.name, quantity);
+    addItem(product, selectedVariant, quantity);
     setAddedAnimation(true);
     setTimeout(() => setAddedAnimation(false), 2000);
   };
 
   const handleBuyNow = () => {
-    addItem(product, selectedVariant.name, quantity);
+    addItem(product, selectedVariant, quantity);
     router.push("/checkout");
   };
 
@@ -496,5 +496,21 @@ export default function ProductDetailPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function ProductDetailPage() {
+  return (
+    <React.Suspense
+      fallback={
+        <div className="min-h-screen bg-white flex items-center justify-center">
+          <div className="text-xs font-bold tracking-[0.25em] uppercase text-black animate-pulse">
+            CARGANDO VITALFIT...
+          </div>
+        </div>
+      }
+    >
+      <ProductDetailPageContent />
+    </React.Suspense>
   );
 }
