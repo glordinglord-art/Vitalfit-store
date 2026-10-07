@@ -32,18 +32,18 @@ export const CartDrawer: React.FC = () => {
         onClick={closeCart}
       />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
         <aside className="w-screen max-w-md bg-white border-l border-neutral-200 shadow-2xl flex flex-col">
           {/* Header */}
-          <div className="p-6 border-b border-neutral-200 flex items-center justify-between">
+          <div className="p-4 sm:p-6 border-b border-neutral-200 flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-black">
+              <h2 className="text-xs sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase text-black">
                 BOLSA DE COMPRAS ({totalItems})
               </h2>
             </div>
             <button
               onClick={closeCart}
-              className="p-1.5 text-black hover:opacity-60 transition-opacity"
+              className="p-2 text-black hover:opacity-60 transition-opacity"
               aria-label="Cerrar bolsa"
             >
               <X className="w-5 h-5 stroke-[1.5]" />

@@ -51,7 +51,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* 2. MAIN HEADER BAR */}
-      <div className="w-full px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between border-b border-neutral-200">
+      <div className="w-full px-3 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between border-b border-neutral-200">
         {/* Left: Support / WhatsApp & Admin */}
         <div className="hidden lg:flex items-center gap-2">
           <a
@@ -75,25 +75,25 @@ export const Navbar: React.FC = () => {
         <div className="lg:hidden flex items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1 text-black"
-            aria-label="Abrir menú"
+            className="w-10 h-10 flex items-center justify-center text-black active:scale-95 transition-transform"
+            aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-6 h-6 stroke-[1.8]" /> : <Menu className="w-6 h-6 stroke-[1.8]" />}
           </button>
         </div>
 
         {/* Center: Signature Brand Logo */}
         <div className="flex flex-col items-center justify-center">
           <Link href="/" className="group inline-block text-center">
-            <h1 className="font-extrabold text-2xl sm:text-3xl tracking-[0.38em] uppercase text-black hover:opacity-85 transition-opacity">
+            <h1 className="font-extrabold text-xl sm:text-2xl md:text-3xl tracking-[0.24em] sm:tracking-[0.38em] uppercase text-black hover:opacity-85 transition-opacity">
               V I T A L F I T
             </h1>
-            <div className="flex items-center justify-center gap-2 -mt-0.5">
-              <span className="text-[7.5px] tracking-[0.3em] font-bold text-neutral-400 uppercase">
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 -mt-0.5">
+              <span className="text-[6.5px] sm:text-[7.5px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-neutral-400 uppercase">
                 HIERRO & CIENCIA
               </span>
               <span className="w-1 h-1 rounded-full bg-red-600" />
-              <span className="text-[7.5px] tracking-[0.3em] font-bold text-black uppercase">
+              <span className="text-[6.5px] sm:text-[7.5px] tracking-[0.25em] sm:tracking-[0.3em] font-bold text-black uppercase">
                 EST. 2026
               </span>
             </div>
@@ -101,10 +101,10 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Right: Actions (Search, Profile, Cart, Country) */}
-        <div className="flex items-center gap-4 sm:gap-6 text-black">
+        <div className="flex items-center gap-1.5 sm:gap-4 md:gap-6 text-black">
           <button
             onClick={() => setSearchOpen(!searchOpen)}
-            className="hover:opacity-60 transition-opacity p-1"
+            className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center hover:opacity-60 transition-opacity"
             aria-label="Buscar en la tienda"
           >
             <Search className="w-4 h-4 stroke-[1.8]" />
@@ -112,7 +112,7 @@ export const Navbar: React.FC = () => {
 
           <Link
             href="/cuenta"
-            className="hover:opacity-60 transition-opacity p-1"
+            className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center hover:opacity-60 transition-opacity"
             aria-label="Portal de Atleta / Mi Cuenta"
           >
             <User className="w-4 h-4 stroke-[1.8]" />
@@ -121,12 +121,12 @@ export const Navbar: React.FC = () => {
           {/* Cart Bag with badge */}
           <button
             onClick={toggleCart}
-            className="relative hover:opacity-60 transition-opacity p-1"
+            className="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center hover:opacity-60 transition-opacity"
             aria-label="Bolsa de compras"
           >
             <ShoppingBag className="w-4 h-4 stroke-[1.8]" />
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-2 bg-black text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md animate-pulse">
+              <span className="absolute top-1 right-0.5 sm:-top-1 sm:-right-2 bg-black text-white text-[8.5px] sm:text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md animate-pulse">
                 {totalItems}
               </span>
             )}
@@ -338,23 +338,114 @@ export const Navbar: React.FC = () => {
 
       {/* 6. MOBILE DRAWER */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-neutral-200 px-6 py-6 space-y-4">
-          <div className="space-y-3 text-xs font-bold tracking-widest uppercase">
-            <div><Link href="/colecciones" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-neutral-100">VER TODAS LAS COLECCIONES</Link></div>
-            <div><Link href="/app" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-neutral-100 text-amber-600 flex items-center justify-between"><span>APP VITALFIT</span><Sparkles className="w-3.5 h-3.5" /></Link></div>
-            <div><Link href="/cuenta" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-neutral-100 flex items-center justify-between"><span>MI CUENTA & PEDIDOS</span><User className="w-3.5 h-3.5" /></Link></div>
-            <div><Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-neutral-100 text-neutral-500">MODO ADMINISTRADOR ⚙</Link></div>
-            <div>
+        <div className="lg:hidden bg-white border-t border-neutral-200 px-5 py-6 space-y-4 max-h-[82vh] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+          {/* Quick Categories Navigation */}
+          <div className="mb-2">
+            <span className="text-[9.5px] font-extrabold tracking-[0.25em] text-neutral-400 uppercase block mb-2">
+              CATEGORÍAS DE TIENDA
+            </span>
+            <div className="grid grid-cols-2 gap-2 text-[11px] font-bold tracking-wider uppercase">
               <a
-                href="https://punto-de-inflexion.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#catalogo"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2.5 px-3 bg-black text-white text-center mt-2"
+                className="p-2.5 bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 text-black text-center"
               >
-                ABRIR APP MÓVIL EN VIVO ↗
+                HOMBRES
+              </a>
+              <a
+                href="#catalogo"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2.5 bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 text-black text-center"
+              >
+                MUJERES
+              </a>
+              <a
+                href="#catalogo"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2.5 bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 text-black text-center"
+              >
+                SUPLEMENTOS
+              </a>
+              <a
+                href="#catalogo"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2.5 bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 text-black text-center"
+              >
+                GEAR & STRAPS
               </a>
             </div>
+          </div>
+
+          <div className="space-y-1 text-xs font-bold tracking-widest uppercase pt-2 border-t border-neutral-100">
+            <div>
+              <Link
+                href="/colecciones"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between py-2.5 text-black hover:opacity-60"
+              >
+                <span>VER TODAS LAS COLECCIONES</span>
+                <ArrowRight className="w-3.5 h-3.5 text-neutral-400" />
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/app"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between py-2.5 text-amber-600 hover:opacity-80"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>APP VITALFIT DE ENTRENAMIENTO</span>
+                </span>
+                <ArrowRight className="w-3.5 h-3.5 text-amber-500" />
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/cuenta"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between py-2.5 text-black hover:opacity-60"
+              >
+                <span className="flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5" />
+                  <span>MI CUENTA & PEDIDOS</span>
+                </span>
+                <ArrowRight className="w-3.5 h-3.5 text-neutral-400" />
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/admin"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between py-2.5 text-neutral-500 hover:text-black"
+              >
+                <span>MODO ADMINISTRADOR ⚙</span>
+                <ArrowRight className="w-3.5 h-3.5 text-neutral-300" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Action CTAs: Live App & WhatsApp */}
+          <div className="pt-3 space-y-2 border-t border-neutral-100">
+            <a
+              href="https://punto-de-inflexion.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-3 px-4 bg-black text-white font-bold text-xs tracking-[0.2em] uppercase text-center block shadow-md active:scale-95 transition-all"
+            >
+              ABRIR APP EN VIVO ↗
+            </a>
+
+            <a
+              href="https://wa.me/573009128421"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-2.5 px-4 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold text-[11px] tracking-wider uppercase text-center flex items-center justify-center gap-2 transition-colors"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+              <span>ASESORÍA POR WHATSAPP 🇨🇴</span>
+            </a>
           </div>
         </div>
       )}

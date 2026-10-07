@@ -4,12 +4,12 @@ import { ArrowRight } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-white border-t border-[#e5e5e5] pt-16 pb-12 select-none">
+    <footer className="w-full bg-white border-t border-[#e5e5e5] pt-12 sm:pt-16 pb-10 sm:pb-12 select-none">
       <div className="w-full px-4 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-neutral-100">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-neutral-100">
           {/* Col 1: Newsletter */}
-          <div className="md:col-span-2 max-w-md">
-            <h3 className="text-xs font-bold tracking-[0.25em] uppercase text-black mb-2">
+          <div className="sm:col-span-2 max-w-md">
+            <h3 className="text-xs font-bold tracking-[0.22em] sm:tracking-[0.25em] uppercase text-black mb-2">
               ACCESO VIP A NUEVOS DROPS
             </h3>
             <p className="text-xs text-neutral-500 mb-4 leading-relaxed">
@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
                 placeholder="Ingresa tu correo electrónico"
                 className="w-full text-xs text-black placeholder:text-neutral-400 outline-none bg-transparent"
               />
-              <button className="text-xs font-bold tracking-widest uppercase text-black hover:opacity-60 flex items-center gap-1">
+              <button className="text-xs font-bold tracking-widest uppercase text-black hover:opacity-60 flex items-center gap-1 flex-shrink-0 pl-2">
                 <span>UNIRME</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
@@ -65,18 +65,18 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-neutral-400">
-          <div className="flex items-center gap-4">
+        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-neutral-400 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
             <span className="font-extrabold tracking-[0.3em] text-black text-xs">
               V I T A L F I T
             </span>
             <span>© 2026 VITALFIT STORE. TODOS LOS DERECHOS RESERVADOS.</span>
           </div>
 
-          <div className="flex items-center gap-4 text-neutral-500">
-            <span>POLÍTICA DE PRIVACIDAD</span>
-            <span>TÉRMINOS DE COMPRA</span>
-            <span>ACCESIBILIDAD</span>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-neutral-500">
+            <a href="#" className="hover:text-black">POLÍTICA DE PRIVACIDAD</a>
+            <a href="#" className="hover:text-black">TÉRMINOS DE COMPRA</a>
+            <a href="#" className="hover:text-black">ACCESIBILIDAD</a>
           </div>
         </div>
       </div>

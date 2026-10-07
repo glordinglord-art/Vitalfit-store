@@ -86,7 +86,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 text-black hover:bg-neutral-100 transition-colors"
+          className="absolute top-3 right-3 z-30 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-black hover:bg-neutral-100 transition-colors shadow-sm"
           aria-label="Cerrar detalles"
         >
           <X className="w-5 h-5 stroke-[1.5]" />
@@ -94,7 +94,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 max-h-[90vh] overflow-y-auto">
           {/* Left Column: Gallery */}
-          <div className="p-6 sm:p-8 bg-neutral-50 flex flex-col items-center justify-between border-b md:border-b-0 md:border-r border-neutral-200">
+          <div className="p-4 sm:p-8 bg-neutral-50 flex flex-col items-center justify-between border-b md:border-b-0 md:border-r border-neutral-200">
             {/* Main Featured Image */}
             <div className="relative aspect-[3/4] w-full bg-[#f0f0f0] overflow-hidden">
               <Image
@@ -114,12 +114,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
             {/* Thumbnail Selectors */}
             {product.images.length > 1 && (
-              <div className="flex gap-2.5 mt-4 w-full justify-center">
+              <div className="flex gap-2 sm:gap-2.5 mt-3 sm:mt-4 w-full justify-center overflow-x-auto pb-1 scrollbar-none">
                 {product.images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(img)}
-                    className={`relative w-16 h-20 bg-neutral-200 border transition-all ${
+                    className={`relative w-14 sm:w-16 h-18 sm:h-20 bg-neutral-200 border transition-all flex-shrink-0 ${
                       selectedImage === img
                         ? "border-black ring-1 ring-black scale-105"
                         : "border-neutral-300 hover:border-black opacity-70 hover:opacity-100"
@@ -138,7 +138,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
 
           {/* Right Column: Product Specs & Buy Box */}
-          <div className="p-6 sm:p-8 flex flex-col justify-between space-y-6">
+          <div className="p-4 sm:p-8 flex flex-col justify-between space-y-4 sm:space-y-6">
             <div>
               {/* Header Info */}
               <div className="flex items-center gap-2 text-[10px] font-bold tracking-[0.25em] text-neutral-400 uppercase">

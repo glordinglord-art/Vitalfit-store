@@ -74,16 +74,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenDetail 
         />
 
         {/* Tag & Scarcity badges */}
-        <div className="absolute top-2.5 left-2.5 z-10 flex flex-col gap-1 items-start">
+        <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10 flex flex-col gap-1 items-start">
           {product.tag && (
-            <span className="px-2 py-0.5 bg-black text-white text-[9px] font-black tracking-widest uppercase shadow-sm">
+            <span className="px-1.5 py-0.5 sm:px-2 bg-black text-white text-[8px] sm:text-[9px] font-black tracking-widest uppercase shadow-sm">
               {product.tag}
             </span>
           )}
           {totalStock <= 15 && totalStock > 0 && (
-            <span className="px-2 py-0.5 bg-red-600 text-white text-[8.5px] font-black tracking-widest uppercase flex items-center gap-1 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-              ¡ÚLTIMAS {totalStock} PIEZAS!
+            <span className="px-1.5 py-0.5 sm:px-2 bg-red-600 text-white text-[7.5px] sm:text-[8.5px] font-black tracking-wider uppercase flex items-center gap-1 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping flex-shrink-0" />
+              <span className="hidden sm:inline">¡ÚLTIMAS {totalStock} PIEZAS!</span>
+              <span className="sm:hidden">¡ÚLTIMAS {totalStock}!</span>
             </span>
           )}
         </div>
@@ -93,27 +94,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenDetail 
           <>
             <button
               onClick={handlePrevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/80 hover:bg-white text-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
+              className="absolute left-1.5 sm:left-2 top-1/2 -translate-y-1/2 w-6 h-6 sm:w-7 sm:h-7 bg-white/80 hover:bg-white text-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
               aria-label="Foto anterior"
             >
-              <ChevronLeft className="w-4 h-4 stroke-[2]" />
+              <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2]" />
             </button>
             <button
               onClick={handleNextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/80 hover:bg-white text-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
+              className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 w-6 h-6 sm:w-7 sm:h-7 bg-white/80 hover:bg-white text-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
               aria-label="Siguiente foto"
             >
-              <ChevronRight className="w-4 h-4 stroke-[2]" />
+              <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2]" />
             </button>
           </>
         )}
 
         {/* YoungLA Style Hover: "AGREGAR A LA BOLSA" Quick Popover */}
         <div
-          className={`absolute inset-x-3 bottom-3 z-20 bg-white/95 backdrop-blur-md p-3.5 shadow-xl border border-neutral-200 transition-all duration-300 ${
+          className={`absolute inset-x-2 sm:inset-x-3 bottom-2 sm:bottom-3 z-20 bg-white/95 backdrop-blur-md p-2.5 sm:p-3.5 shadow-xl border border-neutral-200 transition-all duration-300 hidden sm:block ${
             isHovered
               ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 translate-y-2 pointer-events-none lg:opacity-0"
+              : "opacity-0 translate-y-2 pointer-events-none"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
@@ -205,30 +206,30 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenDetail 
       </div>
 
       {/* Product Details Below Image */}
-      <div className="pt-3 pb-6 flex flex-col items-center text-center space-y-1">
-        <h3 className="text-[11px] font-bold tracking-[0.15em] uppercase text-black group-hover:underline">
+      <div className="pt-2 sm:pt-3 pb-4 sm:pb-6 px-1 flex flex-col items-center text-center space-y-0.5 sm:space-y-1">
+        <h3 className="text-[10px] sm:text-[11px] font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase text-black group-hover:underline line-clamp-2">
           {product.code} - {product.name}
         </h3>
 
-        <p className="text-[11px] font-medium text-neutral-800 tracking-wider">
+        <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-800 tracking-wider">
           {formatPrice(product.price)}
         </p>
 
         {/* Live Scarcity Stock Teaser */}
         {totalStock <= 15 ? (
-          <div className="flex items-center gap-1.5 text-[9.5px] font-black text-red-600 tracking-wider uppercase pt-0.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
-            <span>¡Solo {totalStock} piezas en stock!</span>
+          <div className="flex items-center gap-1 text-[8px] sm:text-[9.5px] font-black text-red-600 tracking-wider uppercase pt-0.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse flex-shrink-0" />
+            <span className="truncate">¡Solo {totalStock} en stock!</span>
           </div>
         ) : (
-          <div className="flex items-center gap-1.5 text-[9.5px] font-bold text-emerald-700 tracking-wider uppercase pt-0.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span>Despacho inmediato 24-48h</span>
+          <div className="flex items-center gap-1 text-[8px] sm:text-[9.5px] font-bold text-emerald-700 tracking-wider uppercase pt-0.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+            <span className="truncate">Despacho 24-48h</span>
           </div>
         )}
 
         {/* Color Swatches Under Price */}
-        <div className="flex items-center justify-center gap-1 pt-1.5">
+        <div className="flex items-center justify-center gap-1 pt-1">
           {product.swatches.map((swatch, idx) => (
             <button
               key={idx}
@@ -236,7 +237,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenDetail 
                 e.stopPropagation();
                 setSelectedSwatch(swatch);
               }}
-              className={`w-3.5 h-3.5 border transition-all ${
+              className={`w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 border transition-all ${
                 selectedSwatch.name === swatch.name
                   ? "border-black ring-1 ring-black scale-110"
                   : "border-neutral-300 hover:border-black"
